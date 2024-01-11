@@ -1,0 +1,15 @@
+<div class="radio">
+  <mat-list role="list">
+    <mat-list-item
+      class="list-item"
+      role="listitem"
+      *ngFor="let x of options; let i = index"
+      (click)="onOptionClick(i)"
+    >
+      <div [ngClass]="selectedOptionIndex === i ? 'selected' : 'not-selected'" class="circle"></div>
+      <div [ngClass]="selectedOptionIndex === i ? 'selected-text' : 'not-selected-text'" class="option-text">
+        {{ x }}
+      </div>
+    </mat-list-item>
+  </mat-list>
+</div>

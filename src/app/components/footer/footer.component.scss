@@ -1,0 +1,51 @@
+.footer {
+  position: fixed;
+  color: #bda3ff;
+  bottom: 2.5vh;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 11;
+}
+
+.footer p {
+  color: rgb(189, 163, 255);
+  margin-bottom: 0;
+  padding: 1em;
+}
+
+.mouse-icon {
+  height: 3vh;
+  margin-bottom: 6vh;
+}
+
+.desktop-view {
+  display: block;
+}
+
+.mobile-view {
+  display: none;
+}
+
+@media (max-width: 500px) {
+  .desktop-view {
+    display: none;
+  }
+
+  .mobile-view {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .footer {
+    bottom: 10px;
+    padding: 10px;
+  }
+
+  .mouse-icon {
+    height: 20px;
+    margin-bottom: 40px;
+  }
+}
+

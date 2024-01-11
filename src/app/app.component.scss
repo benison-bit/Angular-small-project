@@ -1,0 +1,22 @@
+.main {
+  height: 100vh;
+}
+
+.desktop-view {
+  display: block;
+  overflow: hidden;
+}
+
+.mobile-view {
+  display: none;
+}
+
+@media (max-width: 500px) {
+  .desktop-view {
+    display: none;
+  }
+
+  .mobile-view {
+    display: block;
+  }
+}

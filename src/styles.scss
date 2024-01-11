@@ -1,0 +1,14 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+body {
+  background-image: url(assets/images/BG1.svg);
+  background-size: 100%;
+  transition: all 1s ease-out;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  margin: 0;
+}
+
+html, body { height: 100%; }
+

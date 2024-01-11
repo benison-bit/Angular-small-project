@@ -1,0 +1,53 @@
+.radio {
+  position: relative;
+  z-index: 2;
+}
+
+.radio {
+  ::ng-deep {
+    .mat-list-base {
+      .mat-list-item {
+        height: 35px !important;
+      }
+    }
+  }
+}
+
+.circle {
+  border-radius: 50%;
+  border: 1px solid #ffffff;
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+  opacity: 0.3;
+}
+
+.list-item {
+  display: flex;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.30);
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%;
+  letter-spacing: 3px;
+}
+
+.option-text {
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 3px;
+  font-size: 10px;
+  opacity: 0.3;
+}
+
+.selected {
+  background-color: #ffffff;
+  opacity: 1;
+}
+
+.selected-text {
+  opacity: 1;
+}
+

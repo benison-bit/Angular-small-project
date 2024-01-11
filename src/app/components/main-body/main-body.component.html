@@ -1,0 +1,132 @@
+<div class="desktop-view">
+  <div class="main">
+    <app-radio-button
+    [options]="options"
+    [selectedOptionIndex]="selectedOptionIndex"
+    (optionClicked)="onOptionClick($event)"
+  ></app-radio-button>
+
+    <div *ngIf="selectedOptionIndex >= 0 && selectedOptionIndex < options.length" class="main-content">
+      <div [@textAnimation]="selectedOptionIndex" *ngIf="!(selectedOptionIndex === 6)">
+        <h1>{{ textOptions[selectedOptionIndex].text }}</h1>
+        <h2>{{ textOptions[selectedOptionIndex].subtext }}</h2>
+      </div>
+
+      <div class="input-box" [@textAnimation]="selectedOptionIndex" *ngIf="selectedOptionIndex === 6">
+        <h1 class="coming-soon">{{ textOptions[selectedOptionIndex].text }}</h1>
+        <h2 *ngIf="!successMessage" class="get-notified">{{ textOptions[selectedOptionIndex].subtext }}</h2>
+
+        <div class="single">
+          <form [formGroup]="form" (ngSubmit)="submit()">
+              <div class="input-group" *ngIf="!successMessage">
+                  <input type="text" id="email" name="email"  formControlName="email"
+                      class="form-control email_check" style="z-index: 50;">
+                  <span class="input-group-btn">
+                    <button *ngIf="!form.get('email')!.invalid || !form.get('email')!.touched || form.get('email')!.errors?.['required']" class="btn btn-theme" type="submit" name="submit"
+                    style="z-index: 100;">Join Our waitlist  !</button>
+                <button *ngIf="form.get('email')!.invalid && form.get('email')!.touched && form.get('email')!.errors?.['email']" class="btn error-btn-theme" type="submit" name="submit"
+                    style="z-index: 100;">Join Our waitlist  !</button>
+                  </span>
+              </div>
+
+              <div *ngIf="form.get('email')!.invalid && form.get('email')!.touched" class="error-message">
+                <span *ngIf="form.get('email')!.errors?.['required']">Email is required.</span>
+                <span *ngIf="form.get('email')!.errors?.['email']">Enter a valid email address</span>
+              </div>
+
+          </form>
+
+             <div *ngIf="successMessage" class="submit-text">
+                Thanks for subscribing, stay tuned for our mail !
+              </div>
+        </div>
+
+        <h2 class="info-sham">contact@shambyte.com</h2>
+    </div>
+    </div>
+
+  </div>
+
+  <div class="rocket" [style.top]="rocketPosition" id="bottomImg">
+    <img src="assets/images/rocket.png" alt="">
+  </div>
+</div>
+
+<div class="mobile-view"  [style.backgroundImage]="'linear-gradient(90deg, ' + gradientStartColor + ' 31.36%, ' + gradientEndColor + ' 141.9%)'">
+
+  <div class="card">
+      <div class="container" *ngFor="let option of mobileTextOptions">
+          <div class="text label">{{ option.label1 }}</div>
+          <div class="text label">{{ option.label2 }}</div>
+          <div class="text label">{{ option.label3 }}</div>
+
+          <div class="sub-container">
+            <div class="text">{{ option.para1 }}</div>
+            <div class="text">{{ option.para2 }}</div>
+            <div class="text">{{ option.para3 }}</div>
+          </div>
+
+          <div class="text para4">{{ option.para4 }}</div>
+
+          <div class="text image1"><img [src]="option.image1" alt=""></div>
+          <div class="text"><img [src]="option.image2" alt=""></div>
+          <div class="text"><img [src]="option.image3" alt=""></div>
+      </div>
+  </div>
+
+  <div class="header-image">
+    <svg xmlns="http://www.w3.org/2000/svg" width="53" height="66" viewBox="0 0 53 66" fill="none">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M15.8823 12.2461C23.9535 9.17546 29.1138 18.9394 24.387 25.2997C20.0753 31.1398 10.0376 37.0438 11.2649 48.2679C12.1774 44.5174 14.1439 40.7304 16.6168 38.9191C16.6168 38.9191 9.77293 50.175 17.324 65.2453C17.1963 60.45 19.505 55.1118 22.4752 52.1096C26.1481 48.3956 28.4066 50.3895 25.669 55.0388C31.9517 52.3012 34.9448 46.8626 35.9349 37.8332C36.6969 30.8935 42.7241 35.9488 38.4626 43.4178C45.124 40.5069 49.7368 28.8175 46.5201 20.6048C43.3035 12.3921 32.6453 0.816776 15.8823 12.2461Z" fill="white"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M3.57214 35.2597C2.76912 38.3942 4.36147 41.6063 6.38727 43.9834C5.96295 42.5736 5.64813 40.9356 5.96295 39.722C6.5424 42.1265 7.76517 44.5629 9.38034 46.1096C9.33927 41.4192 12.8069 35.4514 12.8069 35.4514C7.45036 37.8695 3.57214 35.2597 3.57214 35.2597Z" fill="white"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M16.2886 12.8529C13.7568 13.4375 11.4747 14.8077 9.76863 16.7676C9.76863 16.7676 9.96026 17.7121 8.51848 19.3135C7.87999 20.0228 6.33597 21.1659 4.74155 22.3464L4.74154 22.3464C2.73557 23.8317 0.649821 25.3759 0.187166 26.1894C0.022503 26.4789 -0.0221377 26.7856 0.0121187 27.0914L0 27.0928C0.141441 28.3293 1.4646 29.5794 1.4646 29.5794C1.67313 31.0293 2.39049 32.354 3.4828 33.3197C5.17965 34.8507 7.70229 35.1258 10.1473 34.6439C14.5814 33.773 15.8715 31.0541 17.1437 28.3729C17.911 26.7558 18.6718 25.1524 20.1121 23.9765C19.4486 25.4375 19.0988 27.0213 19.0855 28.6258C19.8175 26.9757 20.8254 26.0889 21.7797 25.2492C22.9548 24.2153 24.0487 23.2528 24.4465 21.0245C25.1948 16.7266 21.6998 11.7807 16.2886 12.8529ZM13.4918 16.5394L13.7565 17.1417C14.8439 16.8621 15.9646 16.7331 17.0872 16.7584C16.0792 18.1625 14.5756 19.1312 12.8805 19.4686C11.8239 20.4534 10.6731 21.3321 9.44482 22.0921C9.44482 22.0921 12.8576 18.9804 13.4918 16.5394Z" fill="white"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M45.2974 13.3958C42.3181 10.9913 47.1635 10.6081 50.2296 13.519C46.8442 5.20137 36.5007 4.93674 30.9435 5.93138C31.7784 4.10634 31.4819 1.60147 30.9709 0C29.2462 7.7838 19.8336 5.18768 15.8823 12.246C23.543 10.0879 23.8943 16.1744 32.7138 20.4952C41.2504 24.6791 50.4167 24.2137 52.4425 36.0081C54.7512 22.6898 49.4038 16.7083 45.2974 13.3958Z" fill="white"/>
+      </svg>
+  </div>
+
+  <div class="sub-text1">Shambyte</div>
+  <div class="sub-text1 sub-text2">Cyber Guardian</div>
+
+  <div class="coming-soon-mobile">COMING SOON</div>
+  <div *ngIf="!successMessage" class="launch">Get notified on launch</div>
+
+  <div class="form">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <div *ngIf="!successMessage">
+            <input type="text" id="email" name="email"  formControlName="email"
+                class="email_check" style="z-index: 50;">
+            <div class="button-mobile">
+                <button *ngIf="!form.get('email')!.invalid || !form.get('email')!.touched || form.get('email')!.errors?.['required']" class="btn btn-theme" type="submit" name="submit"
+                    style="z-index: 100;">Join Our waitlist  !</button>
+                <button *ngIf="form.get('email')!.invalid && form.get('email')!.touched && form.get('email')!.errors?.['email']" class="btn error-btn-theme" type="submit" name="submit"
+                    style="z-index: 100;">Join Our waitlist  !</button>
+            </div>
+        </div>
+
+        <div *ngIf="form.get('email')!.invalid && form.get('email')!.touched" class="error-message-mobile">
+          <span *ngIf="form.get('email')!.errors?.['required']">Email is required.</span>
+          <span *ngIf="form.get('email')!.errors?.['email']">Enter a valid email address</span>
+        </div>
+      </form>
+
+    </div>
+
+    <div *ngIf="successMessage" class="mobile-submit-text">
+      <div style="padding-top: 15px;">Thanks for subscribing, stay tuned for our mail !</div>
+    </div>
+
+    <!-- <div *ngIf="successMessage" class="exist-text">
+      <div style="padding-top: 15px;">Email Already exits!</div>
+      <div>We have sent a reminder email to you again!</div>
+    </div> -->
+
+        <div class="info">contact@shambyte.com</div>
+
+        <div class="text image1"><img src="assets/images/Ellipse 5.svg" alt=""></div>
+        <div class="text"><img src="assets/images/Vector 11.svg" alt=""></div>
+        <div class="text"><img src="assets/images/Ellipse 5.svg" alt=""></div>
+
+    <div class="copyright">
+      Copyright © 2023 Shambyte | All Rights Reserved
+    </div>
+</div>
+
